@@ -1,0 +1,46 @@
+<div class="card">
+  <h1>受付</h1>
+  <p class="subtitle">ご来訪ありがとうございます。以下のフォームにご記入ください。</p>
+
+  <%= form_with model: @reception, url: receptions_path do |f| %>
+    <% if @reception.errors.any? %>
+      <div class="errors">
+        <ul>
+          <% @reception.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name, "お名前" %>
+      <%= f.text_field :name, placeholder: "山田 太郎", required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :company, "会社名" %>
+      <%= f.text_field :company, placeholder: "株式会社サンプル", required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :purpose, "ご用件" %>
+      <%= f.select :purpose,
+            [["打ち合わせ", "meeting"], ["面接", "interview"], ["配達", "delivery"], ["その他", "other"]],
+            { prompt: "選択してください" },
+            { required: true } %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "受付する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="links">
+    <% if logged_in? %>
+      <%= link_to "受付一覧を見る", receptions_path %>
+    <% else %>
+      <%= link_to "管理者ログイン", login_path %>
+    <% end %>
+  </div>
+</div>

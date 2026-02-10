@@ -1,0 +1,26 @@
+<% content_for :head do %>
+  <meta http-equiv="refresh" content="5;url=<%= root_path %>">
+<% end %>
+
+<div class="card calling-card">
+  <h1>受付完了</h1>
+  <p class="subtitle">担当者を呼び出しています。少々お待ちください。</p>
+
+  <div class="calling-info">
+    <dl>
+      <dt>お名前</dt>
+      <dd><%= @reception.name %></dd>
+
+      <dt>会社名</dt>
+      <dd><%= @reception.company %></dd>
+
+      <dt>ご用件</dt>
+      <dd><%= purpose_label(@reception.purpose) %></dd>
+
+      <dt>受付時刻</dt>
+      <dd><%= @reception.created_at.strftime("%Y年%m月%d日 %H:%M") %></dd>
+    </dl>
+  </div>
+
+  <p class="auto-redirect">5秒後に自動的にトップページへ戻ります…</p>
+</div>
